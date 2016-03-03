@@ -1,4 +1,23 @@
 class Solution {
+  public static char[] mergeSort(char[] l, char[] r) {
+    l = insertionSort(l);
+    r = insertionSort(r);
+
+    int li = 0;
+    int ri = 0;
+    char[] aux = new char[l.length + r.length];
+
+    for (int k = 0; k < aux.length; k++) {
+        if (li < l.length && (ri == r.length || l[li] <= r[ri])) {
+            aux[k] = l[li++];
+        } else if (ri < r.length && (li == l.length || l[li] > r[ri])) {
+            aux[k] = r[ri++];
+        }
+    }
+
+    return aux;
+  }
+    
   public static char[] insertionSort(char[] s) {
     for (int i = 0; i < s.length; i++) {
       for (int j = i; j > 0; j--) {
