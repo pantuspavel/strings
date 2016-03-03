@@ -1,4 +1,17 @@
 class Solution {
+  public static char[] insertionSort(char[] s) {
+    for (int i = 0; i < s.length; i++) {
+      for (int j = i; j > 0; j--) {
+        if (s[j - 1] > s[j]) {
+          char tmp = s[j];
+          s[j] = s[j - 1];
+          s[j - 1] = tmp;
+        }
+      }
+    }
+    return s;
+  }
+    
   static void reverseInPlace(char[] s) {
     for (int i = 0, j = s.length - 1; i < s.length / 2; i++, j--) {
       char c = s[i];
