@@ -1,4 +1,33 @@
 class Solution {
+    public static void exchange(char[] s, int i1, int i2) {
+      char tmp = s[i1];
+      s[i1] = s[i2];
+      s[i2] = tmp;
+  }
+
+  public static char[] quickSortPartition(char[] s) {
+      int i = 1;
+      int j = s.length - 1;
+      char tmp;
+
+      while(i < j) {
+          if (s[i] < s[0]) {
+              i++;
+          }
+
+          if (s[j] > s[0]) {
+              j--;
+          }
+
+          if (s[i] > s[0] && s[j] < s[0]) {
+              exchange(s, i, j);
+          }
+      }
+
+      exchange(s, 0, i);
+      return s;
+  }
+  
   public static char[] mergeSort(char[] l, char[] r) {
     l = insertionSort(l);
     r = insertionSort(r);
