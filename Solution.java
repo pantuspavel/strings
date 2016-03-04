@@ -1,4 +1,28 @@
 class Solution {
+  public static void printAllPermutations(Character[] s) {
+    Character[] sc = new Character[s.length];
+    printAllPermutations(s, sc, 0, new HashSet<Character>());
+  }
+
+  public static void printAllPermutations(Character[] s, Character[] sc, int reach, Set<Character> used) {
+    if (reach == s.length) {
+        for (int i = 0; i < sc.length; i++) {
+            System.out.print(sc[i]);
+        }
+        System.out.println();
+        return;
+    }
+    for (int i = 0; i < s.length; i++) {
+        if (used.contains(s[i])) {
+            continue;
+        }
+        used.add(s[i]);
+        sc[reach] = s[i];
+        printAllPermutations(s, sc, reach + 1, used);
+        used.remove(s[i]);
+    }
+  }
+    
   public static void exchange(char[] s, int i1, int i2) {
     char tmp = s[i1];
     s[i1] = s[i2];
