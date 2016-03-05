@@ -1,4 +1,27 @@
 class Solution {
+  public static void allCombinations(Character[] s) {
+    List<String> strs = new ArrayList<String>();
+    allCombinations(s, strs, s.length - 1);
+  }
+
+  public static void allCombinations(Character[] s, List<String> strs, int reach) {
+    int curSize = strs.size();
+    for (int i = 0; i < curSize; i++) {
+        String ns = s[reach] + strs.get(i);
+        strs.add(ns);
+    }
+
+    strs.add("" + s[reach]);
+
+    if (reach == 0) {
+        for (int i = reach; i < strs.size(); i++) {
+            System.out.println(strs.get(i));
+        }
+    } else {
+        allCombinations(s, strs, reach - 1);
+    }
+  }
+  
   public static void printAllPermutations(Character[] s) {
     Character[] sc = new Character[s.length];
     printAllPermutations(s, sc, 0, new HashSet<Character>());
