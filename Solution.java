@@ -1,4 +1,51 @@
 class Solution {
+  public static char charForKey(int k, int i) {
+    char res = '\0';
+    if (k < 0 || k > 9 || i < 1 || i > 3) {
+      return res;
+    }
+    if (k == 0 || k == 1) {
+      res = k == 0 ? '0' : '1';
+    } else if (k == 2) {
+      res = i == 1 ? 'A' : i == 2 ? 'B' : 'C';
+    } else if (k == 3) {
+      res = i == 1 ? 'D' : i == 2 ? 'E' : 'F';
+    } else if (k == 4) {
+      res = i == 1 ? 'G' : i == 2 ? 'H' : 'I';
+    } else if (k == 5) {
+      res = i == 1 ? 'J' : i == 2 ? 'K' : 'L';
+    } else if (k == 6) {
+      res = i == 1 ? 'M' : i == 2 ? 'N' : 'O';
+    } else if (k == 7) {
+      res = i == 1 ? 'P' : i == 2 ? 'R' : 'S';
+    } else if (k == 8) {
+      res = i == 1 ? 'T' : i == 2 ? 'U' : 'V';
+    } else if (k == 9) {
+      res = i == 1 ? 'W' : i == 2 ? 'X' : 'Y';
+    }
+    return res;
+  }
+
+  public static void printPhoneWords(int[] p, char[] cp, int reach) {
+    if (reach == p.length) {
+      for (int i = 0; i < cp.length; i++) {
+        System.out.print(cp[i]);
+      }
+    System.out.println();
+    return;
+  }
+
+    int maxJ = (p[reach] < 2) ? 1 : 3;
+    for (int j = 1; j <= maxJ; j++) {
+      cp[reach] = charForKey(p[reach], j);
+      printPhoneWords(p, cp, reach + 1);
+    }
+  }
+    
+  public static void printPhoneWords(int[] p) {
+    printPhoneWords(p, new char[p.length], 0);
+  }
+    
   public static void allCombinations(Character[] s) {
     List<String> strs = new ArrayList<String>();
     allCombinations(s, strs, s.length - 1);
