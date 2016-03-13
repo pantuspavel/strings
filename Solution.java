@@ -1,4 +1,22 @@
 class Solution {
+  public static int indexSubstring(char[] str, char[] pattern) {
+    if (pattern.length > str.length) {
+        return -1;
+    }
+        
+    for (int i = pattern.length - 1; i < str.length; i++) {
+      if (pattern[pattern.length - 1] == str[i]) {
+        for (int j =  i - 1; j > i - pattern.length; j--) {
+          if (str[j] != pattern[pattern.length - (i - j)]) {
+            continue;
+          }
+        }
+      return i - pattern.length + 1;
+      }
+    }
+    return -1;
+  }
+  
   public static char charForKey(int k, int i) {
     char res = '\0';
     if (k < 0 || k > 9 || i < 1 || i > 3) {
